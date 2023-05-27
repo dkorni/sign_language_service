@@ -14,7 +14,7 @@ detection_model = model_builder.build(model_config=configs['model'], is_training
 
 # Restore checkpoint
 ckpt = tf.compat.v2.train.Checkpoint(model=detection_model)
-ckpt.restore(os.path.join(CHECKPOINT_PATH, 'ckpt-11')).expect_partial()
+ckpt.restore(os.path.join(CHECKPOINT_PATH, 'ckpt-101')).expect_partial()
 
 @tf.function
 def detect_fn(image):
@@ -40,7 +40,7 @@ for i in range(100):
 print(camNums)
 
 while True:
-    ret, frame = cv2.VideoCapture(1).read()
+    ret, frame = cv2.VideoCapture(0).read()
     image_np = np.array(frame)
 
     input_tensor = tf.convert_to_tensor(np.expand_dims(image_np, 0), dtype=tf.float32)

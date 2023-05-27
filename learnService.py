@@ -21,7 +21,7 @@ with tf.io.gfile.GFile(CONFIG_PATH, "r") as f:
     text_format.Merge(proto_str, pipeline_config)
 
 # Update Config For Transfer Learning
-pipeline_config.model.ssd.num_classes = 33
+pipeline_config.model.ssd.num_classes = 29
 pipeline_config.train_config.batch_size = 4
 pipeline_config.train_config.fine_tune_checkpoint = PRETRAINED_MODEL_PATH+'/ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8/checkpoint/ckpt-0'
 pipeline_config.train_config.fine_tune_checkpoint_type = "detection"
@@ -37,7 +37,7 @@ with tf.io.gfile.GFile(CONFIG_PATH, "wb") as f:
 import time
 # Start timer
 start_time = time.perf_counter()
-os.system('python models/research/object_detection/model_main_tf2.py --model_dir=output/models --pipeline_config_path=models/sign_recognition_mobnet_pipeline.config --num_train_steps=10000')
+os.system('python models/research/object_detection/model_main_tf2.py --model_dir=output/models --pipeline_config_path=models/sign_recognition_mobnet_pipeline.config --num_train_steps=100000')
 # End timer
 end_time = time.perf_counter()
 
