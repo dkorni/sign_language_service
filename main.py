@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import os
 import tensorflow as tf
 from object_detection.utils import config_util
 from object_detection.utils import label_map_util
@@ -29,7 +28,6 @@ category_index = label_map_util.create_category_index_from_labelmap(ANNOTATION_P
 cap = cv2.VideoCapture(0)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-#cap.release()
 
 camNums = []
 print(camNums)
@@ -68,7 +66,7 @@ while True:
         min_score_thresh=.5,
         agnostic_mode=False)
 
-    cv2.imshow('object detection', cv2.resize(image_np_with_detections, (680, 480)))
+    cv2.imshow('Sign language service', cv2.resize(image_np_with_detections, (680, 480)))
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         cap.release()
